@@ -2,8 +2,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './service/auth.service';
 import { SignupCredentialsDto } from './dto/signup-credentials.dto';
-import {SigninCredentialsDto} from "./dto/signin-credentials.dto";
-import {JwtPayLoad} from "./interface/jwt-payload.interface";
+import { SigninCredentialsDto } from './dto/signin-credentials.dto';
+import { JwtPayLoad } from './interface/jwt-payload.interface';
 
 @ApiTags('Auth')
 @Controller('auth')
