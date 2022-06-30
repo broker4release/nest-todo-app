@@ -8,9 +8,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { SigninCredentialsDto } from '../dto/signin-credentials.dto';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { JwtPayload } from '../interface/jwt-payload.interface';
+import { JwtPayLoad } from '../interface/jwt-payload.interface';
 
 export class UserRepository extends Repository<User> {
   private SignupCredentialsDto: SignupCredentialsDto;
@@ -41,7 +39,7 @@ export class UserRepository extends Repository<User> {
 
   async validateUserPassword(
     signInCredentialDto: SigninCredentialsDto,
-  ): Promise<JwtPayload> {
+  ): Promise<JwtPayLoad> {
     const { username, password } = signInCredentialDto;
     const auth = await this.findOne({ username });
 
