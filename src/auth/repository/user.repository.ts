@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { Repository } from 'typeorm';
 import { User } from '../entity/user.entity';
 import { SignupCredentialsDto } from '../dto/signup-credentials.dto';
@@ -12,10 +12,9 @@ import { JwtPayLoad } from '../interface/jwt-payload.interface';
 
 export class UserRepository extends Repository<User> {
   private SignupCredentialsDto: SignupCredentialsDto;
-  private signupCredentialsDto: any;
   async signUp(SignupCredentialsDto: SignupCredentialsDto) {
     this.SignupCredentialsDto = SignupCredentialsDto;
-    const { username, password } = this.signupCredentialsDto;
+    const { username, password } = this.SignupCredentialsDto;
 
     const user = new User();
     user.username = username;
@@ -57,6 +56,6 @@ export class UserRepository extends Repository<User> {
     password: string,
     salt: string,
   ): Promise<string> {
-    return bcrypt.has(password, salt);
+    return bcrypt.hash(password, salt);
   }
 }

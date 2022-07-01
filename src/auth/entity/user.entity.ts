@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { Todo } from '../../todo/entity/todo.entity';
 import { UserInfo } from '../../user/entity/user-info.entity';
 
