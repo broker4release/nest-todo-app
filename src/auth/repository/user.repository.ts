@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import { Repository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 import { User } from '../entity/user.entity';
 import { SignupCredentialsDto } from '../dto/signup-credentials.dto';
 import { UserInfo } from '../../user/entity/user-info.entity';
@@ -10,6 +10,7 @@ import {
 import { SigninCredentialsDto } from '../dto/signin-credentials.dto';
 import { JwtPayLoad } from '../interface/jwt-payload.interface';
 
+@EntityRepository(User)
 export class UserRepository extends Repository<User> {
   private SignupCredentialsDto: SignupCredentialsDto;
   async signUp(SignupCredentialsDto: SignupCredentialsDto) {
