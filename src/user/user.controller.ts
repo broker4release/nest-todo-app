@@ -19,6 +19,7 @@ import { userInfoData } from './interface/user-info.interface';
 import { UserService } from './service/user-info.service';
 import { diskStorage } from 'multer';
 import { UserInfoDto } from './dto/user-info.dto';
+import { existsSync, mkdirSync } from 'fs';
 
 @ApiTags('User')
 @ApiBearerAuth()
@@ -42,7 +43,11 @@ export class UserController {
       fileFilter: imageFileFilter,
       storage: diskStorage({
         destination: function (req, file, cb) {
-          cb(null, './uploads');
+          const uploadPath = 'public/images';
+          if (!existsSync(uploadPath)) {
+            mkdirSync(uploadPath);
+          }
+          cb(null, uploadPath);
         },
         filename: editFileName,
       }),
@@ -54,7 +59,7 @@ export class UserController {
     @GetUser() user: User,
   ): Promise<userInfoData> {
     if (file) {
-      userInfoDto.photo = file.original;
+      userInfoDto.photo = file.originalname;
       userInfoDto.modified_photo = file.filename;
     }
 

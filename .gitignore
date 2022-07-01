@@ -6,8 +6,11 @@
 /pgadmin-data
 /pgdata
 
+# ignore image local upload
+/public/images
+
 # Migration folder
-./src/migration/
+/src/migration/
 
 # Logs
 logs
